@@ -23,7 +23,7 @@ app.get('/user/:id', ((req, res) => {
         });
 }))
 
-app.get('/steam/:id', (req, res) => {
+app.get('/games/:id', (req, res) => {
     axios.get(steam_url + req.params.id + "&include_appinfo=true&include_played_free_games=true")
         .then((steamRes) => {
             res.send(steamRes.data);
