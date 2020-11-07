@@ -13,7 +13,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/user/:id', ((req, res) => {
-    axios.get(`${process.env.STEAM_API_URL}ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.STEAM_API_KEY}/req.params.id`)
+    axios.get(`${process.env.STEAM_API_URL}ISteamUser/GetPlayerSummaries/v0002/?key=${process.env.STEAM_API_KEY}&steamids=req.params.id`)
         .then((steamRes) => {
             res.send(steamRes.data);
         })
