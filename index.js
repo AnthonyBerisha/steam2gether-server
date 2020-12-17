@@ -4,8 +4,6 @@ const axios = require('axios');
 const app = express();
 dotenv.config();
 
-let steam_url = "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=505E4231D4B9D45258C5C017929E0007&steamid="
-
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -22,6 +20,18 @@ app.get('/user/:id', ((req, res) => {
             res.send(err.status)
         });
 }))
+
+app.get('/user/:id/friends', ((req, res) => {
+    axios.get(`${process.env.STEAM_API_URL}ISteamUser/GetFriendList/v0001/?key=${process.env.STEAM_API_KEY}&steamid=${req.params.id}&relationship=friend`)
+      .then((steamRes) => {
+          res.send(steamRes.data);
+      })
+      .catch((err) => {
+          console.error(err)
+          res.send(err.status)
+      });
+}))
+
 
 app.get('/games/:id', (req, res) => {
     axios.get(steam_url + req.params.id + "&include_appinfo=true&include_played_free_games=true")
