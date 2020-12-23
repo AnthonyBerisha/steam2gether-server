@@ -82,7 +82,7 @@ module.exports = class GameController {
     for (let i = 0; i < shortestArray.length; i++) {
       for (let j = 0; j < array.length; j++) {
         for (let k = 0; k < array[j].length; k++) {
-          console.log(shortestArray[i].appid, j, k, array[j].length)
+          // console.log(shortestArray[i].appid, j, k, array[j].length)
           if (shortestArray[i].appid === array[j][k].appid) {
             break;
           } if (k === array[j].length - 1) {
