@@ -34,17 +34,19 @@ module.exports = class GameController {
     }
     commonGamesList = this.smartIntersect(playersGamesList);
 
-    for (let i = 0; i < commonGamesList.length; i++) {
-      await axios.get(`${process.env.STEAM_SPY_URL}?request=appdetails&appid=${commonGamesList[i].appid}`)
-        .then((res) => {
-          commonGamesList[i]['tags'] = res.data.tags;
-        })
-        .catch((err) => {
-          //TODO - Throw exception here and send back status code
-          console.error(err);
-          return err;
-        })
-    }
+    // Get game's tags
+
+    // for (let i = 0; i < commonGamesList.length; i++) {
+    //   await axios.get(`${process.env.STEAM_SPY_URL}?request=appdetails&appid=${commonGamesList[i].appid}`)
+    //     .then((res) => {
+    //       commonGamesList[i]['tags'] = res.data.tags;
+    //     })
+    //     .catch((err) => {
+    //       //TODO - Throw exception here and send back status code
+    //       console.error(err);
+    //       return err;
+    //     })
+    // }
 
     return res.send(commonGamesList);
   }
